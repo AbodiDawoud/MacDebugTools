@@ -1,16 +1,18 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-import SwiftUI
+import AppKit
 
 
 public final class MacDebugHelper {
     private let NS_SPY_PATH = "/System/Library/PrivateFrameworks/AMPDesktopUI.framework/AMPDesktopUI"
     private let NS_SPY_CLASS = "NSViewSpy"
     private let DEBUG_MENU_CLASS = "NSDebugMenu"
-    private let RESPONDER_PANEL_CLASS = "NSResponderChainPanel"
+    private let RESPONDER_PANEL_CLASS = "NSDebugResponderChainPanel"
     
-    func showNSSpy() {
+    public init() {}
+    
+    public func showNSSpy() {
         let handler = dlopen(NS_SPY_PATH, RTLD_NOW)
         defer { dlclose(handler) }
         
@@ -20,7 +22,7 @@ public final class MacDebugHelper {
     }
     
     @MainActor
-    func addDebugMenu() {
+    public func addDebugMenu() {
         guard let menuBar = NSApplication.shared.mainMenu else {
             return print("Couldn't find the app menu bar, No menu item was added.")
         }
@@ -46,7 +48,7 @@ public final class MacDebugHelper {
     }
     
     @MainActor
-    func showResponderChainPanel() {
+    public func showResponderChainPanel() {
         let panelObjectClass = NSClassFromString(RESPONDER_PANEL_CLASS) as! NSPanel.Type
         let panel = panelObjectClass.value(forKey: "sharedPanel") as! NSPanel
         panel.makeKeyAndOrderFront(nil)
