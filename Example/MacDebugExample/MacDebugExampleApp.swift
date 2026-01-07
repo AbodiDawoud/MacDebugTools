@@ -21,6 +21,14 @@ struct MacDebugExampleApp: App {
             }
             .buttonStyle(.plain)
             .formStyle(.grouped)
+            .containerBackground(.thickMaterial, for: .window)
+            .toolbar(removing: .title)
+            .toolbarBackgroundVisibility(.hidden, for: .windowToolbar)
+            .windowResizeBehavior(.disabled)
+            .windowFullScreenBehavior(.disabled)
         }
+        .commandsRemoved()
+        .defaultSize(width: 420, height: 330)
+        .windowResizability(.contentSize)
     }
 }
