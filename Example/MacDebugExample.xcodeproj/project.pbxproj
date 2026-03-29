@@ -18,6 +18,7 @@
 		BDB5B9D52E7783E300D37C0B /* Exceptions for "MacDebugExample" folder in "MacDebugExample" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Assets.xcassets,
 				MacDebugExampleApp.swift,
 			);
 			target = BDB5B9C22E7783B800D37C0B /* MacDebugExample */;
